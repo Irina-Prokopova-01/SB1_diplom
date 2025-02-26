@@ -11,6 +11,6 @@ urlpatterns = [
     path("register/", UserCreateAPIView.as_view(), name="register"),
     path("auth/", include("djoser.urls")),
     path("auth/", include("djoser.urls.jwt")),
-    path("login//", TokenObtainPairView.as_view(permission_classes=(AllowAny,)), name="login"),
-    path("api/token/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
+    path("login/", TokenObtainPairView.as_view(permission_classes=(AllowAny,)), name="login"),
+    path("api/token/refresh/", TokenRefreshView.as_view(permission_classes=(AllowAny,)), name="token_refresh"),
 ]
