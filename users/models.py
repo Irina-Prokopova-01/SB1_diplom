@@ -11,14 +11,8 @@ ROLE_CHOICES = (
 class User(AbstractUser):
     username = None
     email = models.EmailField(unique=True, help_text="Укажите вашу почту")
-    first_name = models.CharField(
-        max_length=30,
-        help_text="Укажите ваше имя"
-    )
-    last_name = models.CharField(
-        max_length=30,
-        help_text="Укажите вашу фамилию"
-    )
+    first_name = models.CharField(max_length=30, help_text="Укажите ваше имя")
+    last_name = models.CharField(max_length=30, help_text="Укажите вашу фамилию")
     phone = models.CharField(
         max_length=20,
         verbose_name="Номер телефона",
@@ -33,10 +27,7 @@ class User(AbstractUser):
         null=True,
         help_text="Загрузите изображение",
     )
-    role = models.CharField(
-        max_length=20,
-        choices=ROLE_CHOICES,
-        default="user")
+    role = models.CharField(max_length=20, choices=ROLE_CHOICES, default="user")
 
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = []

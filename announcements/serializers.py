@@ -7,6 +7,7 @@ class AnnouncementSerializer(serializers.ModelSerializer):
     """
     Сериализатор обьявления
     """
+
     class Meta:
         model = Announcement
         fields = "__all__"
@@ -16,6 +17,7 @@ class ReviewSerializer(serializers.ModelSerializer):
     """
     Сериализатор отзыва
     """
+
     class Meta:
         model = Review
         fields = "__all__"

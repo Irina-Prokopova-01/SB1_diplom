@@ -7,6 +7,7 @@ class Announcement(models.Model):
     """
     Модель объявления
     """
+
     title = models.CharField(max_length=255, verbose_name="Название Товара")
     price = models.PositiveIntegerField(verbose_name="Цена товара")
     description = models.TextField(verbose_name="Описание товара")
@@ -30,12 +31,14 @@ class Review(models.Model):
     """
     Модель отзыва
     """
+
     text = models.TextField(verbose_name="Текст отзыва")
     author = models.ForeignKey(
         User, on_delete=models.CASCADE, verbose_name="Автор отзыва"
     )
-    announcement = models.ForeignKey(Announcement, on_delete=models.CASCADE,
-                           verbose_name="Объявление")
+    announcement = models.ForeignKey(
+        Announcement, on_delete=models.CASCADE, verbose_name="Объявление"
+    )
     created_at = models.DateTimeField(
         auto_now_add=True, verbose_name="Дата создания отзыва"
     )

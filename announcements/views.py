@@ -15,6 +15,7 @@ class AnnouncementViewSet(viewsets.ModelViewSet):
     pagination_class = AnnouncementPagination
     filter_backends = (DjangoFilterBackend, filters.SearchFilter)
     search_fields = ["title"]
+
     def get_permissions(self):
         if self.request.method in ["POST", "PUT", "PATCH", "DELETE"]:
             if self.request.user.is_authenticated:
@@ -23,6 +24,7 @@ class AnnouncementViewSet(viewsets.ModelViewSet):
                 return [IsOwner()]
             raise PermissionDenied("У вас недостаточно прав!")
         return super().get_permissions()
+
 
 class ReviewViewSet(viewsets.ModelViewSet):
     queryset = Review.objects.all()
