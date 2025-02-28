@@ -13,16 +13,12 @@ def api_client():
 
 @pytest.fixture
 def create_user(db):
-    return User.objects.create(
-        email="test@yandex.ru", password="12345", role="user"
-    )
+    return User.objects.create(email="test@yandex.ru", password="12345", role="user")
 
 
 @pytest.fixture
 def create_admin(db):
-    return User.objects.create(
-        email="admin@yandex.ru", password="12345", role="admin"
-    )
+    return User.objects.create(email="admin@yandex.ru", password="12345", role="admin")
 
 
 @pytest.fixture
@@ -96,16 +92,22 @@ def test_user_can_delete_own_announcement(api_client, create_user, create_announ
     assert Announcement.objects.count() == 0
 
 
-def test_user_cannot_delete_any_announcement(api_client, create_user, admin_create_announcement):
+def test_user_cannot_delete_any_announcement(
+    api_client, create_user, admin_create_announcement
+):
     api_client.force_authenticate(user=create_user)
 
-    url = reverse("announcements:announcement-detail", args=[admin_create_announcement.id])
+    url = reverse(
+        "announcements:announcement-detail", args=[admin_create_announcement.id]
+    )
     response = api_client.delete(url)
     assert response.status_code == status.HTTP_403_FORBIDDEN
     assert Announcement.objects.count() == 1
 
 
-def test_admin_can_delete_any_announcement(api_client, create_admin, create_announcement):
+def test_admin_can_delete_any_announcement(
+    api_client, create_admin, create_announcement
+):
     api_client.force_authenticate(user=create_admin)
 
     url = reverse("announcements:announcement-detail", args=[create_announcement.id])
@@ -132,7 +134,9 @@ def test_user_can_create_review(api_client, create_user, create_announcement):
 
 def test_user_can_delete_review(api_client, create_user, create_announcement):
     api_client.force_authenticate(user=create_user)
-    review = Review.objects.create(author=create_user, ad=create_announcement, text="Отзыв")
+    review = Review.objects.create(
+        author=create_user, ad=create_announcement, text="Отзыв"
+    )
 
     response = api_client.delete(
         reverse("announcements:review-detail", kwargs={"pk": review.id})
@@ -141,9 +145,13 @@ def test_user_can_delete_review(api_client, create_user, create_announcement):
     assert Review.objects.count() == 0
 
 
-def test_admin_can_delete_any_review(api_client, create_admin, create_user, create_announcement):
+def test_admin_can_delete_any_review(
+    api_client, create_admin, create_user, create_announcement
+):
     api_client.force_authenticate(user=create_admin)
-    review = Review.objects.create(author=create_user, ad=create_announcement, text="Отзыв")
+    review = Review.objects.create(
+        author=create_user, ad=create_announcement, text="Отзыв"
+    )
 
     response = api_client.delete(
         reverse("announcements:review-detail", kwargs={"pk": review.id})
