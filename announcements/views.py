@@ -9,6 +9,9 @@ from users.permissions import IsOwner, IsAdmin
 
 
 class AnnouncementViewSet(viewsets.ModelViewSet):
+    """
+    Контроллер создания, просмотра, удаления, изменения обьявления.
+    """
     queryset = Announcement.objects.all()
     serializer_class = AnnouncementSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
@@ -27,6 +30,9 @@ class AnnouncementViewSet(viewsets.ModelViewSet):
 
 
 class ReviewViewSet(viewsets.ModelViewSet):
+    """
+    Контроллер создания, просмотра, удаления, изменения отзыва.
+    """
     queryset = Review.objects.all()
     serializer_class = ReviewSerializer
     permission_classes = [permissions.IsAuthenticated]

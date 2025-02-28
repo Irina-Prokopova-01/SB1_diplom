@@ -9,6 +9,9 @@ ROLE_CHOICES = (
 
 
 class User(AbstractUser):
+    """
+    Модель пользователя
+    """
     username = None
     email = models.EmailField(unique=True, help_text="Укажите вашу почту")
     first_name = models.CharField(max_length=30, help_text="Укажите ваше имя")
