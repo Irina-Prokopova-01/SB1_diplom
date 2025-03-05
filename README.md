@@ -26,9 +26,7 @@ Backend-часть для сайта объявлений.
 * pytest
 * pytest-django
 * pytest-cov
-* celery
 * django-celery-beat
-* redis
 
 Для разработки дополнительно:
 
@@ -44,9 +42,6 @@ Backend-часть для сайта объявлений.
 (команда: poetry add pyproject.toml).
 
 * Создать файл .env и внести все чувствительные параметры указанные в файле .env.sample
-
-* Для работы celery запустите redis сервер
-(команда: redis-server) и далее (команда: celery -A config worker --beat --scheduler django --loglevel=info)
 
 * Если есть надобность задеплоить проект на Docker
 (команда: docker-compose up -d --build)
