@@ -135,7 +135,7 @@ def test_user_can_create_review(api_client, create_user, create_announcement):
 def test_user_can_delete_review(api_client, create_user, create_announcement):
     api_client.force_authenticate(user=create_user)
     review = Review.objects.create(
-        author=create_user, ad=create_announcement, text="Отзыв"
+        author=create_user, announcement=create_announcement, text="Отзыв"
     )
 
     response = api_client.delete(
@@ -150,7 +150,7 @@ def test_admin_can_delete_any_review(
 ):
     api_client.force_authenticate(user=create_admin)
     review = Review.objects.create(
-        author=create_user, ad=create_announcement, text="Отзыв"
+        author=create_user, announcement=create_announcement, text="Отзыв"
     )
 
     response = api_client.delete(
