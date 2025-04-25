@@ -6,6 +6,9 @@ from users.serializers import UserSerializer
 
 
 class UserCreateAPIView(CreateAPIView):
+    """
+    Контроллер создания, просмотра, удаления, изменения пользователя.
+    """
     serializer_class = UserSerializer
     queryset = User.objects.all()
     permission_classes = (AllowAny,)
